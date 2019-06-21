@@ -23,6 +23,7 @@ function addPoints (points) {
      else playerTwo.score += points
      playerOne.draw()
      playerTwo.draw()
+     
 }
 
 function holdPoints() {
@@ -37,6 +38,7 @@ function holdPoints() {
 
 function getCurrentPoints (){
   currentPoints = countCoincidences(dices)
+  gameOver(currentPoints)
 }
 
 
@@ -91,7 +93,14 @@ function countCoincidences(dices){
   return coyoteCount * points.pointsCoyote + ocelotCount * points.pointsOcelot
 }
 
-function gameOver (){ 
-  
-
+function gameOver (currentPoints){ 
+  if (playerOne.score >= winningScore) {
+      ctx.fillStyle = "red"
+  ctx.font = "50px Arial" 
+  ctx.fillText ("PLAYER ONE WON!", 500, 400)
+  } else if ( playerTwo.score >= winningScore ) {
+    ctx.fillStyle = "red"
+    ctx.font = "50px Arial" 
+    ctx.fillText ("PLAYER TWO WON!", 500, 400)
+}
 }

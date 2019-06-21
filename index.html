@@ -6,14 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <title>Mexica_greedy</title>
+    
 </head>
 <body>
 
-    <button id="start-button">StartGame</button>
-    <button id="roll-dice">ROLL</button>
-    <button id="hold-points">HOLD</button>
+    <button id="start-button" onmousedown="startGame.play()">START GAME</button>
+    <button class = "action" id="roll-dice" onmousedown="rollSound.play()">ROLL</button>
+    <button class = "action" id="hold-points" onmousedown="holdPointsSound.play()">HOLD</button>
     <div id="game-board">
-    <canvas id="mexiCanvas" width="1200" height="600"></canvas>
+    <canvas id="mexiCanvas" width="1000" height="600"></canvas>
     </div>
 <script src="classes.js"></script>
 <script src="helpers.js"></script>

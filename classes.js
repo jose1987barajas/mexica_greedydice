@@ -2,8 +2,8 @@ class Dice {
     constructor(x, y) {
        this.x = x 
        this.y = y
-       this.width = 150
-       this.height = 150 
+       this.width = 200
+       this.height = 200 
        this.avocado = new Image()
        this.avocado.src = "./images/dices/Avocado.png"
        this.chili = new Image()
@@ -34,14 +34,22 @@ class Player {
     constructor(x, y) {
         this.x = x 
         this.y = y
-        this.width = 200
-        this.height = 100   
+        this.width = 250
+        this.height = 150   
+        this.score = 0
     }
     draw() {
         ctx.fillStyle = "black"
         ctx.fillRect(this.x, this.y, this.width, this.height)
         ctx.fillStyle = "white"
         ctx.fillRect(this.x+5, this.y+5, this.width-10, this.height-10)
+        ctx.fillStyle = "black"
+        ctx.font = "20px Arial"
+        ctx.fillText ("Score Player One", 350, 480);
+        ctx.fillStyle = "black"
+        ctx.font = "20px Arial"
+        ctx.fillText ("Score Player Two", 800, 480)
+        ctx.fillText (this.score, this.x+100, this.y+50)
     }
 }    
 

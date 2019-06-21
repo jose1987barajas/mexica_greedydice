@@ -1,28 +1,31 @@
 function rollDice(){
-    diceOne.draw.bind(diceOne,
-         Math.floor(Math.random() * 6))()
+    diceOne.draw.bind(diceOne,Math.floor(Math.random() * 6))()
     diceTwo.draw.bind(diceTwo, Math.floor(Math.random() * 6))()
     diceThree.draw.bind(diceThree, Math.floor(Math.random() * 6))()
     diceFour.draw.bind(diceFour, Math.floor(Math.random() * 6))()
     diceFive.draw.bind(diceFive, Math.floor(Math.random() * 6))()
     diceSix.draw.bind(diceSix, Math.floor(Math.random() * 6))()
+   
 } document.getElementById("roll-dice").onclick = function() {
-    rollDice();
+    rollDice(); 
 }
 
-function addPoints () {
-    
+function addPoints (points) {
+     playerOne.score += points
+     playerOne.draw()
+     playerTwo.score += points
+     playerTwo.draw()
 }
 
 function holdPoints() {
-
+    addPoints(countCoincidences(dices))
 } document.getElementById("hold-points").onclick = function() {
     holdPoints();
 }
 
 
 
-function countCoincidences(array){
+function countCoincidences(dices){
     const points = {
         pointsSixOfaKind : 3000,
         pointsStair : 2000,
@@ -34,7 +37,7 @@ function countCoincidences(array){
         pointsCoyote : 50
                     }
 	const counts = {}
-	array.forEach(el=>{
+	dices.forEach(el=>{
 	if (counts[el]) counts[el]++
 	else counts[el] = 1 
 	})
@@ -51,7 +54,7 @@ function countCoincidences(array){
     if (key === 'Coyote') coyoteCount += counts[key]	
 	}
 	if (maxCount === 6) return points.pointsSixOfaKind
-  if (new Set(array).size === 6) return points.pointsStair
+  if (new Set(dices).size === 6) return points.pointsStair
   if (Object.values(counts).every(el=>el===2)) return points.pointsThreePairs
   if (maxCount === 5) {
     if (max === 'Coyote') return points.pointsFiveOfaKind + ocelotCount*points.pointsOcelot

@@ -1,26 +1,42 @@
 function rollDice(){
+    dices = []
     diceOne.draw.bind(diceOne,Math.floor(Math.random() * 6))()
     diceTwo.draw.bind(diceTwo, Math.floor(Math.random() * 6))()
     diceThree.draw.bind(diceThree, Math.floor(Math.random() * 6))()
     diceFour.draw.bind(diceFour, Math.floor(Math.random() * 6))()
     diceFive.draw.bind(diceFive, Math.floor(Math.random() * 6))()
     diceSix.draw.bind(diceSix, Math.floor(Math.random() * 6))()
-   
+    rolls--
+    getCurrentPoints()
+    if (rolls === 0) 
+    { holdPoints();}
+    playerOne.draw()
+    playerTwo.draw()
+    if (turn) playerOne.drawCurrentPoints()
+    else playerTwo.drawCurrentPoints()
 } document.getElementById("roll-dice").onclick = function() {
     rollDice(); 
 }
 
 function addPoints (points) {
-     playerOne.score += points
+     if ( turn )playerOne.score += points 
+     else playerTwo.score += points
      playerOne.draw()
-     playerTwo.score += points
      playerTwo.draw()
 }
 
 function holdPoints() {
-    addPoints(countCoincidences(dices))
+    addPoints(countCoincidences(dices)) 
+    turn = !turn
+    rolls = 3
+    playerOne.draw()
+    playerTwo.draw()
 } document.getElementById("hold-points").onclick = function() {
-    holdPoints();
+  holdPoints();
+}
+
+function getCurrentPoints (){
+  currentPoints = countCoincidences(dices)
 }
 
 
@@ -73,4 +89,9 @@ function countCoincidences(dices){
     else return points.pointsThreeOfaKind + ocelotCount*points.pointsOcelot + coyoteCount*points.pointsCoyote
   }
   return coyoteCount * points.pointsCoyote + ocelotCount * points.pointsOcelot
+}
+
+function gameOver (){ 
+  
+
 }

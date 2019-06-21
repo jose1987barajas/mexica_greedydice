@@ -26,6 +26,7 @@ class Dice {
             this.coyote, 
             this.ocelot, 
             this.tomato][face], this.x, this.y, this.width, this.height)
+            
         dices.push(values[face])
     }
 }
@@ -43,14 +44,25 @@ class Player {
         ctx.fillRect(this.x, this.y, this.width, this.height)
         ctx.fillStyle = "white"
         ctx.fillRect(this.x+5, this.y+5, this.width-10, this.height-10)
-        ctx.fillStyle = "black"
+        if (turn) ctx.fillStyle = "red" 
+        else ctx.fillStyle = "black"
         ctx.font = "20px Arial"
         ctx.fillText ("Score Player One", 350, 480);
-        ctx.fillStyle = "black"
+        if (turn) ctx.fillStyle = "black" 
+        else ctx.fillStyle = "red"
         ctx.font = "20px Arial"
         ctx.fillText ("Score Player Two", 800, 480)
+        ctx.fillStyle = "black"
         ctx.fillText (this.score, this.x+100, this.y+50)
     }
+    drawCurrentPoints() {
+        ctx.fillStyle = "white"
+        ctx.fillRect(this.x+50, this.y+50, 180, 90)
+        ctx.fillStyle = "black"
+        ctx.font = "20px Arial"
+        ctx.fillText (`+${currentPoints}? press HOLD`, this.x+50, this.y+80)
+    }
+
 }    
 
 
